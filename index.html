@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold Email Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .form-input {
+            @apply w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200;
+        }
+        .form-label {
+            @apply block mb-1 text-sm font-medium text-gray-700;
+        }
+        .btn {
+            @apply px-5 py-2.5 text-sm font-medium text-white rounded-lg focus:ring-4 focus:outline-none transition-all duration-200;
+        }
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 focus:ring-blue-300;
+        }
+        .btn-secondary {
+            @apply bg-gray-600 hover:bg-gray-700 focus:ring-gray-300;
+        }
+        #email-output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Cold Email Generator</h1>
+            <p class="mt-2 text-md text-gray-600">Fill in the fields below to personalize your outreach email.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Form Section -->
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <form id="email-form">
+                    <h2 class="text-2xl font-semibold mb-6 border-b pb-3">Your Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="your-name" class="form-label">Your Name</label>
+                            <input type="text" id="your-name" class="form-input" placeholder="e.g., Alex Doe" required>
+                        </div>
+                        <div>
+                            <label for="experience-years" class="form-label">Years of Experience</label>
+                            <input type="number" id="experience-years" class="form-input" placeholder="e.g., 5" required>
+                        </div>
+                    </div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="linkedin-url" class="form-label">LinkedIn Profile URL</label>
+                            <input type="url" id="linkedin-url" class="form-input" placeholder="https://linkedin.com/in/..." required>
+                        </div>
+                        <div>
+                            <label for="portfolio-url" class="form-label">Portfolio/GitHub URL</label>
+                            <input type="url" id="portfolio-url" class="form-input" placeholder="https://github.com/..." required>
+                        </div>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold mb-6 mt-8 border-b pb-3">Company Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="manager-name" class="form-label">Hiring Manager Name</label>
+                            <input type="text" id="manager-name" class="form-input" placeholder="e.g., Kennan" required>
+                        </div>
+                        <div>
+                            <label for="company-name" class="form-label">Company Name</label>
+                            <input type="text" id="company-name" class="form-input" placeholder="e.g., Icon" required>
+                        </div>
+                        <div>
+                            <label for="company-field" class="form-label">Company's Industry/Field</label>
+                            <input type="text" id="company-field" class="form-input" placeholder="e.g., AI Infrastructure" required>
+                        </div>
+                        <div>
+                            <label for="admired-feature" class="form-label">Admired Product/Feature</label>
+                            <input type="text" id="admired-feature" class="form-input" placeholder="e.g., their new API" required>
+                        </div>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold mb-6 mt-8 border-b pb-3">Your Experience</h2>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="prev-company-1" class="form-label">Previous Company 1</label>
+                            <input type="text" id="prev-company-1" class="form-input" placeholder="e.g., DynamoAI" required>
+                        </div>
+                        <div>
+                            <label for="prev-company-2" class="form-label">Previous Company 2</label>
+                            <input type="text" id="prev-company-2" class="form-input" placeholder="e.g., Antimetal" required>
+                        </div>
+                    </div>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label for="frontend-skills" class="form-label">Key Frontend Skills</label>
+                            <input type="text" id="frontend-skills" class="form-input" placeholder="e.g., React, Next.js, Vue" required>
+                        </div>
+                        <div>
+                            <label for="backend-skills" class="form-label">Key Backend Skills</label>
+                            <input type="text" id="backend-skills" class="form-input" placeholder="e.g., Python, Node.js, Go" required>
+                        </div>
+                        <div>
+                            <label for="infra-skills" class="form-label">Key Infrastructure Skills</label>
+                            <input type="text" id="infra-skills" class="form-input" placeholder="e.g., AWS, GCP, Kubernetes" required>
+                        </div>
+                        <div>
+                            <label for="project-example" class="form-label">Specific Project Example</label>
+                            <textarea id="project-example" class="form-input" rows="3" placeholder="e.g., Architecting the entire platform for Alan Studio..." required></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-full">Generate Email</button>
+                </form>
+            </div>
+
+            <!-- Output Section -->
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg h-full flex flex-col">
+                <h2 class="text-2xl font-semibold mb-6 border-b pb-3">Generated Email</h2>
+                <div id="output-container" class="flex-grow bg-gray-50 rounded-lg p-4 border border-gray-200 min-h-[300px] text-gray-700 text-sm leading-relaxed">
+                    <pre id="email-output">Your generated email will appear here...</pre>
+                </div>
+                <div id="action-buttons" class="mt-4 flex items-center justify-end gap-3 hidden">
+                    <button id="copy-btn" class="btn btn-secondary">Copy Text</button>
+                    <button id="download-btn" class="btn btn-secondary">Download .txt</button>
+                </div>
+                 <div id="copy-success-msg" class="mt-4 text-right text-green-600 font-medium hidden">
+                    Copied to clipboard!
+                </div>
+            </div>
+        </div>
+        
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>Built to streamline your job application process.</p>
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById('email-form');
+        const emailOutput = document.getElementById('email-output');
+        const actionButtons = document.getElementById('action-buttons');
+        const copyBtn = document.getElementById('copy-btn');
+        const downloadBtn = document.getElementById('download-btn');
+        const copySuccessMsg = document.getElementById('copy-success-msg');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                yourName: document.getElementById('your-name').value,
+                experienceYears: document.getElementById('experience-years').value,
+                linkedinUrl: document.getElementById('linkedin-url').value,
+                portfolioUrl: document.getElementById('portfolio-url').value,
+                managerName: document.getElementById('manager-name').value,
+                companyName: document.getElementById('company-name').value,
+                companyField: document.getElementById('company-field').value,
+                admiredFeature: document.getElementById('admired-feature').value,
+                prevCompany1: document.getElementById('prev-company-1').value,
+                prevCompany2: document.getElementById('prev-company-2').value,
+                frontendSkills: document.getElementById('frontend-skills').value,
+                backendSkills: document.getElementById('backend-skills').value,
+                infraSkills: document.getElementById('infra-skills').value,
+                projectExample: document.getElementById('project-example').value
+            };
+
+            const emailTemplate = `
+Subject: Inquiry from an interested Engineer - ${formData.yourName}
+
+tldr;
+I'm incredibly impressed with what ${formData.companyName} is building in the ${formData.companyField} space. My passion is building things from the ground up, and I'm looking for an opportunity to go heads-down and help a mission-driven team succeed. I want to be part of a team taking something from 0 -> 1 or 1 -> 100.
+
+Hi ${formData.managerName},
+
+I've been following ${formData.companyName}'s work on ${formData.admiredFeature} and I'm truly inspired by your approach. I wanted to reach out to see if you have any openings for engineers on your early/growth team.
+
+I have ${formData.experienceYears} years of experience building full-stack, data-driven applications at companies like ${formData.prevCompany1} and ${formData.prevCompany2}. In these roles, I was part of the early teams where I helped scale systems and products to support thousands of users and complex workflows.
+
+Being part of lean, fast-paced teams has made me highly adaptable. My strongest suit is my ability to work across the entire stack—from designing and building scalable backend services to creating polished, production-grade frontend components.
+
+For example, I have built several end-to-end systems that involved:
+- UI/Frontend: ${formData.frontendSkills}
+- Backend: ${formData.backendSkills}
+- Infrastructure: ${formData.infraSkills}
+
+A specific project I'm proud of is: ${formData.projectExample}.
+
+I am eager to bring my "build-it" mindset to a team like yours and contribute to defining the product and culture.
+
+I'm excited about the possibility of joining ${formData.companyName} and would love to chat more about how my skills could benefit your team.
+
+Looking forward to hearing from you.
+
+Best,
+
+${formData.yourName}
+${formData.linkedinUrl} | ${formData.portfolioUrl}
+`;
+            
+            emailOutput.textContent = emailTemplate.trim();
+            actionButtons.classList.remove('hidden');
+            copySuccessMsg.classList.add('hidden');
+        });
+
+        copyBtn.addEventListener('click', function() {
+            const textToCopy = emailOutput.textContent;
+            
+            // Using execCommand as a fallback for broader browser compatibility in iFrames
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                copySuccessMsg.classList.remove('hidden');
+                setTimeout(() => copySuccessMsg.classList.add('hidden'), 2000);
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        });
+
+        downloadBtn.addEventListener('click', function() {
+            const textToDownload = emailOutput.textContent;
+            const blob = new Blob([textToDownload], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cold_email_${document.getElementById('company-name').value.replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
